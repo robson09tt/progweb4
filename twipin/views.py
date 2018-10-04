@@ -21,8 +21,14 @@ def json_exemplo(request):
            "irmãos": 2
        }
    }
-
    return JsonResponse(pessoa)
 
+def json_listar_twips(request):
+  twips = Twip.objects.all()
+  jt = {"lista":[]}
 
-    
+  for t in twips:
+    temp = {"id": t.id, "texto": t.texto, "autor": t.autor.username}
+    jt["lista"].append(temp)
+
+  return JsonResponse(jt)

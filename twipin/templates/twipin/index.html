@@ -104,10 +104,12 @@
             });
 
             //TODO Fazer uma chamada para carregar todos os twips aqui
-            $.getJSON( "/json/exemplo", function( data ) {
-                  
-                 alert(data.nome)
+            $.getJSON( "/json/listartwips", function( twips ) {
+              var count = twips.lista.length
+              for (var c = 0; c < count; c++){
+                alert(twips.lista[c].texto)
 
+              }
             });
             
             

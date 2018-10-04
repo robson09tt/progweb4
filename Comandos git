@@ -1,0 +1,13 @@
+Upload
+
+1 - git add --all (Informa ao git que foi feito modificações no arquivo obs: deve estar dentro do diretório)
+
+2 - git commit -m "aqui vai um comentário" (adiciona um comentário para a modificação feita)
+
+4 - git push (envia o arquivo para o git)
+
+
+
+Dowload
+
+3 - git pull (baixa os arquivos dos outros
