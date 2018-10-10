@@ -67,8 +67,24 @@
                  var t = $("#mensagem").val();
                  $("#mensagem").val("").trigger("input").focus();
                  //alert("Twip: " + t); //TODO Substitua esse alert pelo envio de mensagem
-                 loadingTwip(0, t, "Usuario teste");
-                 atualizarContadorTwips();
+                 
+                 
+                 $.ajax({
+                    method:"POST",
+                    url: "/api/twips",
+                    data: {texto: t}
+                 })
+                 .done(function(data){
+                    if (data["mensagem"] == "ok") 
+                    {
+                      loadingTwip(0, t, "Usuario teste");
+                      atualizarContadorTwips();
+                    }else
+                    {
+                      alert("Erro" +data["mensagem"]);
+                    }
+                 });
+
                  return false;
             });
 
@@ -92,13 +108,14 @@
             });
 
             //TODO Fazer uma chamada para carregar todos os twips aqui
-            $.getJSON( "/json/listartwips", function( twips ) {
+            $.getJSON( "/api/twips", function( twips ) {
               var count = twips.lista.length;
               for (var c = 0; c < count; c++){
                 var id = twips.lista[c].id;
                 var texto = twips.lista[c].texto;
                 var usuario = twips.lista[c].autor;
                 loadingTwip(id, texto, usuario);
+                atualizarContadorTwips();
               }
             });
             
